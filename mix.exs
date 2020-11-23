@@ -4,8 +4,8 @@ defmodule SsePhoenixPubsub.MixProject do
   def project do
     [
       app: :sse_phoenix_pubsub,
-      version: "0.1.0",
-      elixir: "~> 1.5",
+      version: "1.0.0",
+      elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
@@ -39,8 +39,9 @@ defmodule SsePhoenixPubsub.MixProject do
   defp deps do
     [
       {:plug, ">= 1.4.5"},
-      {:phoenix_pubsub, "~> 1.1"},
-      {:jason, "~> 1.0"}
+      {:phoenix_pubsub, "~> 2.0"},
+      {:jason, "~> 1.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 end

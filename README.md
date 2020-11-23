@@ -10,7 +10,7 @@ by adding `sse_phoenix_pubsub` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:sse_phoenix_pubsub, "~> 0.1.0"}
+    {:sse_phoenix_pubsub, "~> 1.0.0"}
   ]
 end
 ```
