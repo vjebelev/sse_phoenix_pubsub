@@ -62,7 +62,7 @@ defmodule SsePhoenixPubsub.Chunk do
   end
 
   @spec build_data(String.t()) :: String.t()
-  defp build_data(data) do
+  defp build_data(data) when is_binary(data) do
     "data: #{data}\n"
   end
 

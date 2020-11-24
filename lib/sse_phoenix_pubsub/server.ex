@@ -78,7 +78,7 @@ defmodule SsePhoenixPubsub.Server do
         chunk = %Chunk{data: data}
         send_sse(conn, pubsub_info, chunk)
 
-      {:send_iddle} ->
+      {:send_idle} ->
         send_sse(conn, pubsub_info, keep_alive_chunk())
 
       {:close} ->
@@ -95,7 +95,7 @@ defmodule SsePhoenixPubsub.Server do
 
   @spec reset_timeout() :: :ok
   defp reset_timeout do
-    new_ref = Process.send_after(self(), {:send_iddle}, Config.keep_alive())
+    new_ref = Process.send_after(self(), {:send_idle}, Config.keep_alive())
     old_ref = Process.put(:timer_ref, new_ref)
     unless is_nil(old_ref), do: Process.cancel_timer(old_ref)
     :ok

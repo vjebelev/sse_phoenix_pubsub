@@ -4,7 +4,7 @@ defmodule SsePhoenixPubsub.MixProject do
   def project do
     [
       app: :sse_phoenix_pubsub,
-      version: "1.0.0",
+      version: "1.0.1",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       description: description(),
