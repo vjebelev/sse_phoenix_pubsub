@@ -1,6 +1,6 @@
 # SsePhoenixPubsub
 
-I needed a way to stream to event source events and at first tried to use the sse + event_bus package by Mustafa Turan (https://github.com/mustafaturan/sse) but it turned out to not be a good fit for my project (main reason being that we have to deal with a large number of dynamically generated topics and event bus uses atoms for channel names, a limited number of which is available, and not garbage collected either). I then looked at the Phoenix PubSub which turned out to be a great fit as it's already used internally by Phoenix for streaming to websockets. So this package is a product of hacking Mustafa's project and replacing event bus with Phoenix PubSub.
+I needed a way to stream to event source events and at first tried to use the sse + event_bus package by Mustafa Turan (https://github.com/mustafaturan/sse) but it turned out to not be a good fit for my project (main reason being that we have to deal with a large number of dynamically generated topics and event bus uses atoms for channel names, a limited number of which is available). I then looked at the Phoenix PubSub which turned out to be a great fit as it's already used internally by Phoenix for streaming to websockets. So this package is a product of hacking Mustafa's project and replacing event bus with Phoenix PubSub.
 
 ## Installation
 

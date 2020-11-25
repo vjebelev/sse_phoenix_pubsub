@@ -1,15 +1,34 @@
 defmodule SsePhoenixPubsub do
   @moduledoc """
-  `sse_phoenix_pubsub` package: Server-Sent Events on top of `Phoenix PubSub`.
+  Server-Sent Events on top of `Phoenix PubSub`.
 
   ### Installation
 
   Add to dependencies in mix.exs:
+  ```elixir
     {:sse_phoenix_pubsub, "~> 1.0"}
+  ```
+
+  ### Sending SSE
+
+  Start the PubSub system in `application.ex`:
+
+  ```elixir
+    {Phoenix.PubSub, name: MyApp.PubSub}
+  ```
+
+  Publish messages via `Phoenix.PubSub.broadcast` method on a selected topic:
+
+  ```elixir
+    Phoenix.PubSub.broadcast(MyApp.PubSub, "time", {MyApp.PubSub, "01:34:55.123567"})
+  ```
+
+  ### Receiving SSE
 
   Configure http endpoint for SSE with `idle_timeout` option to keep
   the SSE connection running:
 
+  ```elixir
     config :my_app, MyAppWeb.Endpoint,
       http: [
         port: 4000,
@@ -17,9 +36,11 @@ defmodule SsePhoenixPubsub do
           idle_timeout: 3_600_000
         ]
       ]
+  ```
 
   Configure phoenix or plug routing:
 
+  ```elixir
     pipeline :sse do
       plug :put_format, "text/event-stream"
       plug :fetch_session
@@ -30,9 +51,11 @@ defmodule SsePhoenixPubsub do
 
       get "/", SseController, :subscribe
     end
+  ```
 
   Create a Phoenix controller for subscribing http clients to desired topics:
 
+  ```elixir
     defmodule MyAppWeb.SseController do
       use MyAppWeb, :controller
 
@@ -52,14 +75,7 @@ defmodule SsePhoenixPubsub do
         end
       end
     end
-
-  Start the PubSub system in `application.ex`:
-
-    {Phoenix.PubSub, name: MyApp.PubSub}
-
-  Publish messages via `Phoenix.PubSub.broadcast` method on a selected topic:
-
-    Phoenix.PubSub.broadcast(MyApp.PubSub, "time", {MyApp.PubSub, "01:34:55.123567"})
+  ```
 
   """
 
