@@ -1,7 +1,9 @@
 defmodule SsePhoenixPubsub.Server do
-  @moduledoc false
-  # Server for SSE / Phoenix Pubsub
-  #
+  @moduledoc """
+  Server for streaming Server-Sent Events to http clients.
+
+  """
+
   require Logger
 
   alias Plug.Conn
@@ -17,7 +19,9 @@ defmodule SsePhoenixPubsub.Server do
   @type pubsub_info :: {atom(), topics()}
 
   @doc """
-  Stream SSE events
+  Stream SSE events.
+
+  SsePhoenixPubsub.stream(conn, {MyApp.PubSub, ["time"]})
   """
   @spec stream(conn(), pubsub_info(), chunk_data()) :: conn()
   def stream(conn, pubsub_info, data) do

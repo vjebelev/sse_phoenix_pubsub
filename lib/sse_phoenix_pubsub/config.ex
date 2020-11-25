@@ -1,6 +1,20 @@
 defmodule SsePhoenixPubsub.Config do
-  @moduledoc false
-  # Config vars
+  @moduledoc """
+
+  Configuration for `sse_phoenix_pubsub`:
+    * `:keep_alive` - Optional. Keep-alive interval to send a ping to the client.
+      Default is `20_000` (milliseconds).
+    * `:retry` - Optional. The reconnection time to use when attempting to send the event.
+      Default is `2_000` (milliseconds).
+
+  ### Example
+  Configured defaults with override from environment variables, if present:
+
+    config :sse_phoenix_pubsub,
+      retry: {:system, "SSE_RETRY_IN_MS", 2_000},
+      keep_alive: {:system, "SSE_KEEP_ALIVE_IN_MS", 20_000}
+
+  """
 
   @app :sse_phoenix_pubsub
 
