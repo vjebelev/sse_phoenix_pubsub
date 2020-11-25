@@ -44,8 +44,10 @@ defmodule SsePhoenixPubsub.Chunk do
         id: id,
         retry: retry
       }) do
-    build_field("", comment) <> build_field("id", id) <>
-      build_field("event", event) <> build_data(data) <>
+    build_field("", comment) <>
+      build_field("id", id) <>
+      build_field("event", event) <>
+      build_data(data) <>
       build_field("retry", retry) <> "\n"
   end
 
@@ -56,7 +58,7 @@ defmodule SsePhoenixPubsub.Chunk do
 
   @spec build_data(list(String.t())) :: String.t()
   defp build_data(data_list) when is_list(data_list) do
-    Enum.reduce(data_list, "", fn(data, acc) ->
+    Enum.reduce(data_list, "", fn data, acc ->
       acc <> "data: #{data}\n"
     end)
   end
